@@ -19,3 +19,5 @@ class Block {
  */
 
 //console.log('block1', block1)
+
+module.exports = Block;
