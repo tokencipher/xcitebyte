@@ -11,6 +11,19 @@ class Block {
   static genesis() {
     return new Block(GENESIS_DATA);
   }
+
+  /**  
+   * We named this method `mineBlock` to represent the fact that
+   * creating a block requires computational work in order to allow 
+   * the blockchain to grow at a reasonable pace.
+   */
+  static mineBlock({ lastBlock, data }) {
+    return new this({
+      timestamp: Date.now(),
+      lastHash: lastBlock.hash,
+      data
+    });
+  }
 }
 
 /**
