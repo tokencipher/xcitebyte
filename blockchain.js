@@ -21,6 +21,41 @@ const cryptoHash = require('./crypto-hash');
  * 
  * When multiple blockchains are interacting like this, we're calling
  * this the blockchain network.
+ * 
+ * Miners must spend computational power in order to mine a block.
+ * This deters hackers from trying to rewrite the entire blockchain
+ * history with corrupt and invalid data. It's going to be financially
+ * expensive for them to try.
+ * 
+ * By continually adjusting the nonce value, a miner can keep generating valid
+ * hashes for the current block until they find one that satisfies the difficulty.
+ * 
+ * So, the nonce value starts at 0 and it increments upwards until a nonce is used that
+ * has a matching number of leading zeroes according to the set difficulty.
+ * 
+ * Overall, this act of generating new hashes with changing nonce values takes a decent 
+ * amount of computational work. Hence, finding a nonce that unlocks a hash that meets
+ * the difficulty requirement is that very proof of work.
+ * 
+ * The term nonce originates from the 'Number used once' shortened multiple times.
+ * 
+ * So, you use the number once and then change n to something else and keep using it once
+ * until you get a valid hash.
+ * 
+ * Overall, finding the right combination of the data, nonce, and lastHash to meet the leading
+ * zeroes requirement takes quite a bit of computational work.
+ * 
+ * The 51% Attack is a scenario where a dishonest miner has more than at least 51% of the 
+ * computing power of the entire blockchain network. Thus, they would have the power to 
+ * replace the current blockchain with one in their favor. Because they can dominate the
+ * entire network. 
+ * 
+ * They can generate a long enough blockchain that has solved enough proof of work puzzles 
+ * in order to generate a valid blockchain that everyone else is just going to have to accept.
+ * Since, collectively they only control 49% of the blockchain computing power.
+ * 
+ * This Proof of Work system makes such a scenario so computationally expensive that it's 
+ * ridiculous to spend the cost in order to try and benefit from taking over the blockchain
  */
 
 class Blockchain {
@@ -58,13 +93,13 @@ class Blockchain {
     }
 
     for (let i = 1; i < chain.length; i++) {
-      const { timestamp, lastHash, hash, data } = chain[i];
+      const { timestamp, lastHash, hash, nonce, difficulty, data } = chain[i];
 
       const actualLastHash = chain[i-1].hash;
 
       if (lastHash !== actualLastHash) return false;
 
-      const validatedHash = cryptoHash(timestamp, lastHash, data);
+      const validatedHash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
 
       if (hash !== validatedHash) return false;
     }
