@@ -5,6 +5,8 @@ const MINE_RATE = 1000; // 1 sec. mine rate is set in millis.
 
 const INITIAL_DIFFICULTY = 3;
 
+const STARTING_BALANCE = 1000;
+
 const GENESIS_DATA = {
   timestamp: 1, 
   lastHash: '-----',
@@ -14,4 +16,4 @@ const GENESIS_DATA = {
   data: []
 };
 
-module.exports = { GENESIS_DATA, MINE_RATE };
+module.exports = { GENESIS_DATA, MINE_RATE, STARTING_BALANCE };
