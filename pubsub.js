@@ -36,7 +36,15 @@ class PubSub {
   }
 
   publish({channel, message}) {
-    this.publisher.publish(channel, message);
+    /**
+     * This will make sure publishes do not send non-consequential 
+     * messages to the same local subscriber.
+     */
+    this.subscriber.unsubscribe(channel, () => {
+      this.publisher.publish(channel, message, () => {
+        this.subscriber.subscribe(channel);
+      });
+    });
   }
 
   broadcastChain() {
