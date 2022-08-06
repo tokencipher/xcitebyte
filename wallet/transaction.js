@@ -27,6 +27,22 @@ class Transaction {
     };
   }
 
+  // JS will always treat the same object instance as equal even if 
+  // its properties have changed. So, in this case its affecting our
+  // result for the senderWallet.sign()
+  //
+  // Two references to the same object in JS are always going to be 
+  // treated as equal even if the properties in that object has 
+  // changed in one of the references
+  update({senderWallet, recipient, amount}) {
+    this.outputMap[recipient] = amount;
+
+    this.outputMap[senderWallet.publicKey] = 
+      this.outputMap[senderWallet.publicKey] - amount;
+
+    this.input = this.createInput({senderWallet, outputMap: this.outputMap});
+  }
+
   static validTransaction(transaction) {
     const { input: { address, amount, signature }, outputMap } = transaction;
 
