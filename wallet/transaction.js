@@ -54,7 +54,7 @@ class Transaction {
   static validTransaction(transaction) {
     const { input: { address, amount, signature }, outputMap } = transaction;
 
-    console.log(Object.values(outputMap))
+    //console.log(Object.values(outputMap));
 
     const outputTotal = Object.values(outputMap)
       .reduce((total, outputAmount) => total + outputAmount);
