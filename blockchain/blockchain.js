@@ -123,11 +123,13 @@ class Blockchain {
             return false;
           }
 
+          // all input should be based on blockchain history, according to
+          // its balance
           const trueBalance = wallet.calculateBalance({
             chain: this.chain,
             address: transaction.input.address
           });
-          
+
           if (transaction.input.amount !== trueBalance) {
             console.error('Invalid input amount');
             return false;
