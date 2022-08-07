@@ -46,6 +46,8 @@
 //        validation on top of that, so that a transaction can't be recorded if it already exists in the 
 //        blockchain history.
 
+const Transaction = require('./wallet/transaction');
+
 class TransactionMiner {
   constructor({blockchain, transactionPool, wallet, pubsub}) {
     this.blockchain = blockchain;
@@ -53,17 +55,24 @@ class TransactionMiner {
     this.wallet = wallet;
     this.pubsub = pubsub;
   }
-  
+
   mineTransactions() {
     // TODO: get the transaction pool's valid transactions
+    const validTransactions = this.transactionPool.validTransactions();
 
     // TODO: generate the miner's reward
+    validTransactions.push(
+      Transaction.rewardTransaction({minerWallet: this.wallet})
+    );
 
     // TODO: add a block consisting of these transactions to the blockchain
+    this.blockchain.addBlock({ data: validTransactions });
 
     // TODO: broadcast the updated blockchain
+    this.pubsub.broadcastChain();
 
     // TODO: clear the pool
+    this.transactionPool.clear();
   }
 }
 
