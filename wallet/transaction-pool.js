@@ -24,11 +24,9 @@ class TransactionPool {
   }
 
   validTransactions() {
-    let validTransactions = Object.values(this.transactionMap).filter(
+    return Object.values(this.transactionMap).filter(
       transaction => Transaction.validTransaction(transaction)
-    )
-
-    return validTransactions;
+    );
   }
 
   clearBlockchainTransactions({chain}) {
