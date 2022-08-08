@@ -15,6 +15,7 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 import App from './components/App';
+import './index.css';
 
 //console.log('JavaScript hello!');
 
