@@ -1,0 +1,13 @@
+body {
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+  font-family: 'Fira Sans', serif;
+  font-size: 22px;
+  padding-top: 5%;
+}
+
+.logo {
+  width: 250px; 
+  height: 250px;
+}
