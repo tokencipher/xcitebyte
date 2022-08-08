@@ -10,13 +10,16 @@ import { render } from 'react-dom';
 // called the commonJS project. However, the 2015 version of JavaScript, called
 // es6 added support for loading content through an import syntax
 
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container);
+
 import App from './components/App';
 
 //console.log('JavaScript hello!');
 
 // This mark-up is not actually HTML! 
 // The mark-up you are seeing here is JSX, short for JavaScript XML-like syntax
-render(
-  <App></App>,
-  document.getElementById('root')
+root.render(
+  <App></App>
 )
