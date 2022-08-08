@@ -18,12 +18,14 @@ class App extends Component {
   render() {
     const {address, balance} = this.state.walletInfo;
     return (
-      <div>
-        <img className="logo" src={logo}></img>
+      <div className='App'>
+        <img className='logo' src={logo}></img>
         <div>Welcome to the blockchain...</div>
         <br />
-        <div>Address: {address}</div>
-        <div>Balance: {balance}</div>
+        <div className='WalletInfo'>
+          <div>Address: {address}</div>
+          <div>Balance: {balance}</div>
+        </div>
         <br />
         <Blocks />
       </div>
