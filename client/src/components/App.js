@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Blocks from './Blocks';
-import logo from '../assets/mock-logo.png'; 
+import logo from '../assets/mock-logo-2.png'; 
 
 class App extends Component {
   state = { walletInfo: {}};
