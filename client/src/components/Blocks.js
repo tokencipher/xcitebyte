@@ -10,11 +10,21 @@ class Blocks extends Component {
   }
 
   render() {
+    // we get three logs. once when the component is created
+    // once when it starts loading and once when it finally
+    // get to the componentDidMount
     console.log('this.state', this.state);
 
     return (
       <div>
         <h3>Blocks</h3>
+        {
+          this.state.blocks.map(block => {
+            return (
+              <div key={block.hash}>{block.hash}</div>
+            )
+          })
+        }
       </div>
     );
   }
