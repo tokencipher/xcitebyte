@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Blocks from './Blocks';
 import logo from '../assets/mock-logo-2.png'; 
 
 class App extends Component {
@@ -17,6 +16,7 @@ class App extends Component {
   // returns JSX
   render() {
     const {address, balance} = this.state.walletInfo;
+
     return (
       <div className='App'>
         <img className='logo' src={logo}></img>
@@ -26,8 +26,6 @@ class App extends Component {
           <div>Address: {address}</div>
           <div>Balance: {balance}</div>
         </div>
-        <br />
-        <Blocks />
       </div>
     )
   }
