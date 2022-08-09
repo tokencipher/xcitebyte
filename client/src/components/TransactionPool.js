@@ -8,7 +8,7 @@ class TransactionPool extends Component {
   state = { transactionPoolMap: {} };
 
   fetchTransactionPoolMap = () => {
-    fetch('http://localhost:3000/api/transaction-pool-map')
+    fetch(`${document.location.origin}/api/transaction-pool-map`)
       .then(response => response.json())
       .then(json => this.setState({transactionPoolMap: json})
     );
@@ -17,9 +17,14 @@ class TransactionPool extends Component {
   componentDidMount() {
     this.fetchTransactionPoolMap();
 
-    setInterval(() => {
+    this.fetchPoolMapInterval = setInterval(() => {
       this.fetchTransactionPoolMap()
     }, POLL_INTERVAL_MS);
+  }
+
+  // as soon as the component is removed from the document
+  componentWillUnmount() {  
+    clearInterval(this.fetchPoolMapInterval);
   }
 
   render() {
