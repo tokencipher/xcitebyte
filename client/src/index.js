@@ -25,6 +25,7 @@ const root = ReactDOM.createRoot(
 
 import App from './components/App';
 import Blocks from './components/Blocks';
+import ConductTransaction from './components/ConductTransaction';
 import './index.css';
 
 //console.log('JavaScript hello!');
@@ -36,6 +37,7 @@ root.render(
     <Routes>
       <Route path='/' element={<App/>} />
       <Route path='blocks' element={<Blocks />} />
+      <Route path='conduct-transaction' element={<ConductTransaction/>} />
     </Routes>
   </BrowserRouter>
 )
