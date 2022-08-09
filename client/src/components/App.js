@@ -9,7 +9,7 @@ class App extends Component {
   // allows us to run the request without having to block the presentation appearing 
   // to the user within the render method
   componentDidMount() {
-    fetch('http://localhost:3000/api/wallet-info')
+    fetch(`${document.location.origin}/api/wallet-info`)
       .then(response => response.json())
       .then(json => this.setState({walletInfo: json}))
   }

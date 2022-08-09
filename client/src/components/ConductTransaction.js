@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 class ConductTransaction extends Component {
   state = { recipient: '', amount: 0 };
@@ -16,7 +16,7 @@ class ConductTransaction extends Component {
   conductTransaction = () => {
     const {recipient, amount} = this.state;
 
-    fetch('http://localhost:3000/api/transact', {
+    fetch(`${document.location.origin}/api/transact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({recipient, amount})
