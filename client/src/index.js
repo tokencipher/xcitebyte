@@ -6,15 +6,25 @@ import React from 'react';
 // it allows us to dynamically insert react components into the HTML document.
 import { render } from 'react-dom';
 
+import * as ReactDOM from 'react-dom';
+
 // nodeJS, recall that we use the require keyword which is part of the system
 // called the commonJS project. However, the 2015 version of JavaScript, called
 // es6 added support for loading content through an import syntax
 
 import { createRoot } from 'react-dom/client';
-const container = document.getElementById('root');
-const root = createRoot(container);
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import history from './history';
+
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+//const root = createRoot();
 
 import App from './components/App';
+import Blocks from './components/Blocks';
 import './index.css';
 
 //console.log('JavaScript hello!');
@@ -22,5 +32,10 @@ import './index.css';
 // This mark-up is not actually HTML! 
 // The mark-up you are seeing here is JSX, short for JavaScript XML-like syntax
 root.render(
-  <App></App>
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<App/>} />
+      <Route path='blocks' element={<Blocks />} />
+    </Routes>
+  </BrowserRouter>
 )
